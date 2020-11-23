@@ -168,3 +168,11 @@ Está função vai percorrer a lista e imprimir na tela casa item dentro dela.
 3
 :ok
 ```
+
+## Pattern Matching
+No pattern matching o sinal de `=` alem de fazer a atribuição de um valor em uma variável, ele verifica se essa atribuição é valida.
+
+Como o elixir implementa esse pattern em sua base, ele funciona em todo o seu código.
+
+No caso de `x = 2` estamos passando o valor para `x`, após essa atribuição se executarmos `2 = x`, sera retornado `2`.
+Agora se executarmos `3 = x`, vamos receber um erro de match, já que o o `x` está valendo `2`.
