@@ -118,3 +118,24 @@ Diferente dos arrays do Javascript que usam colchetes `[]` as tuplas do Elixir u
 | **Elixir** | `{"banana", 200}` |
 
 Geralmente as tuplas do Elixir são utilizadas para guardar valores que contem relações entre si. 
+
+## Listas e Keywords
+As listas do Elixir se assemelham com as Tuplas e se parecem mais com os arrays do Javascript, são criadas adicionando os valore entre o colchetes `[]`.
+
+Diferente das Tuplas as Listas são implementadas como dados encadeados, para inserir um valor no fim da lista você deve percorrer ela por completo.
+
+Por ser encadeada é mais indicado que os novos valores a serem inseridos em um lista, sejam colocados no inicio dela.
+
+Diferente dos arrays de Javascript, você não consegue acessar um item passando a variável o index. Exemplo:
+
+| - | Variável | Selecionar | Resultado |
+| :- | :-: | :-: | :-: |
+|**Javascript** | `array = [1, 2, 3]` | `array[1]` | `2`|
+|**Elixir** | `list = [1, 2, 3]` | `list[1]` | `error`|
+
+Para acessar os valores utilizando chaves, você pode utilizar as keywords, elas se assemelham aos objetos do javascript. Exemplo:
+
+| - | Variável | Selecionar | Resultado |
+| :- | :-: | :-: | :-: |
+|**Javascript** | `object = { primeiro: 1, segundo: 2, terceiro:3}` | `object["primeiro"]` | `1`|
+|**Elixir** | `keywords = [primeiro: 1, segundo: 2, terceiro:3]` | `keywords[primeiro]` | `1`|
