@@ -139,3 +139,14 @@ Para acessar os valores utilizando chaves, você pode utilizar as keywords, elas
 | :- | :-: | :-: | :-: |
 |**Javascript** | `object = { primeiro: 1, segundo: 2, terceiro:3}` | `object["primeiro"]` | `1`|
 |**Elixir** | `keywords = [primeiro: 1, segundo: 2, terceiro:3]` | `keywords[primeiro]` | `1`|
+
+## Maps
+Os maps são mais semelhantes com os objetos do javascript, tanto em sua forma de escrita quanto de leitura. Exemplo:
+
+```elixir
+person = %{
+  name: "Jorge",
+  age: 28
+}
+```
+Bastar chamar o `person.age` para retornar o valor `28`.
