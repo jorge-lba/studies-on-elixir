@@ -102,7 +102,7 @@ Os operadores `||` e `&&` também estão presentes no Elixir, mas tem alem da fo
 
 | Comum | Secundaria | Resultado |
 | :--: | :--: | :--: |
-| ```true || false``` | `true or false` | `true` |
+| `true \|\| false` | `true or false` | `true` |
 | `true && false` | `true and false` | `false` |
 
 Essa segunda forma de usar o operador tona o código mais legível.
