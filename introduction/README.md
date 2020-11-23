@@ -73,7 +73,7 @@ Para retornar o numero inteiro de uma divisão ou o resto da mesma é necessári
 A interpolação de strings do Elixir é semelhante ao do Javascript, abaixo podemos ver as diferenças.
 
 Para o exemplo vamos considerar o valor da variável `name` como Ana
-| | | 
+|--------------- |------------------------------- | 
 |:--- | :--- | :--- |
 | **Javascript** | \`Meu nome é ${name}\` |
 | **Elixir** | "Meu nome é #{name}" |
@@ -87,7 +87,7 @@ Já no Elixir podemos utilizar as aspas duplas `"` para envolver a `string` e o 
 
 A concatenação de strings do Elixir é semelhante ao do Javascript, abaixo podemos ver a diferença.
 
-| | | 
+|--------------- |-------------------------------- | 
 |:--- | :--- | :--- |
 | **Javascript** | "Meu nome é " + "Ana" |
 | **Elixir** | "Meu nome é " <> "Ana" |
@@ -112,7 +112,7 @@ Tuplas são semelhantes aos arrays em Javascript, que podem guardar diversos val
 
 Diferente dos arrays do Javascript que usam colchetes `[]` as tuplas do Elixir utilizam chaves `{}`. Exemplo:
 
-| | |
+|--------------- |------------------------- |
 | :-: | :-: |
 | **Javascript** | `['banana', 200]` |
 | **Elixir** | `{"banana", 200}` |
