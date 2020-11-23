@@ -150,3 +150,21 @@ person = %{
 }
 ```
 Bastar chamar o `person.age` para retornar o valor `28`.
+
+Tanto as Tuplas, Listas, Keywords e Maps tem semelhanças entre si e com outros tipos do Javascrip, porem cada uma delas tem suas particularidades tanto em sintaxe quanto implementação, que vão impactar na forma de cria-las e performance em seu código.
+
+## Modulo Enum
+O modulo Enum contem diversas funções para trabalhar com qualquer coleção (tupla, lista, keywords, maps). Exemplo de uma função que percorre uma lista:
+
+```elixir
+Enum.each([1,2,3], fn x -> IO.puts(x) end)
+```
+Está função vai percorrer a lista e imprimir na tela casa item dentro dela.
+
+*resultado*
+```
+1
+2
+3
+:ok
+```
