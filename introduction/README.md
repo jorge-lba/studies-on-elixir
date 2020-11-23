@@ -74,7 +74,7 @@ A interpolação de strings do Elixir é semelhante ao do Javascript, abaixo pod
 
 Para o exemplo vamos considerar o valor da variável `name` como Ana
 |--------------- |------------------------------- | 
-|:--- | :--- | :--- |
+|:--- | :--- |
 | **Javascript** | \`Meu nome é ${name}\` |
 | **Elixir** | "Meu nome é #{name}" |
 | **Resultado** | Meu nome é Ana |
@@ -88,7 +88,7 @@ Já no Elixir podemos utilizar as aspas duplas `"` para envolver a `string` e o 
 A concatenação de strings do Elixir é semelhante ao do Javascript, abaixo podemos ver a diferença.
 
 |--------------- |-------------------------------- | 
-|:--- | :--- | :--- |
+|:--- | :--- |
 | **Javascript** | "Meu nome é " + "Ana" |
 | **Elixir** | "Meu nome é " <> "Ana" |
 | **Resultado** | Meu nome é Ana |
@@ -101,7 +101,7 @@ Note que em Javascript utilizamos o operador `+` para fazer a junção das duas 
 Os operadores `||` e `&&` também estão presentes no Elixir, mas tem alem da forma tradicional de ser chamada, ele tem uma outra forma.
 
 | Comum | Secundaria | Resultado |
-| :--: | :--: | :--: | :--: |
+| :--: | :--: | :--: |
 | `true || false` | `true or false` | `true` |
 | `true && false` | `true and false` | `false` |
 
