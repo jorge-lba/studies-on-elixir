@@ -176,3 +176,10 @@ Como o elixir implementa esse pattern em sua base, ele funciona em todo o seu c�
 
 No caso de `x = 2` estamos passando o valor para `x`, após essa atribuição se executarmos `2 = x`, sera retornado `2`.
 Agora se executarmos `3 = x`, vamos receber um erro de match, já que o o `x` está valendo `2`.
+
+## Pipe Operator
+O operador Pipe faz a composição de funções, para utilizar ele usamos o seguinte operador `|>`. Exemplo
+
+`"Test" |> IO.puts()` com essa expressão estamos falando para que a string `"Test"` seja passada como o primeiro parametro da função `IO.puts()`, que vai imprimir no tela o string.
+
+O operador pipe sempre passa o item anterior como o primeiro parâmetro da proxima função, caso a função tenha que receber outros parâmetros bas ir adicionando normalmente.
