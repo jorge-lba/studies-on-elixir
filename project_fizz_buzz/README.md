@@ -62,3 +62,28 @@ Vamos ver o resultado caso o arquivo passado não exista.
 iex(2)> ProjectFizzBuzz.build("number.txt") 
 :enoent
 ```
+
+### Formatando os dados
+Agora vamos formatar os dados recebidos, quando a listar retorna ela vem como string, vamos quebrar ela em uma lista e transformar no tipo `number`.
+
+Para isso vamos adicionar abaixo da função `handle_file_read` uma função para converter a lista para uma lista de números. 
+```elixir
+def convertToNumbers(string) do
+  string
+  |> String.split(",")
+  |> Enum.map(&String.to_integer/1)
+end
+```
+essa função vai quebrar a string onde houver a ","( virgula ) e depois vai fazer um map para converter o resultado para uma lista de números.
+
+Agora vamos passar essa função para a função `handle_file_read` que retorna o `:ok`.
+```elixir
+def handle_file_read({:ok, result}), do: result |> convertToNumbers()
+```
+Utilizando o operador pipe estamos falando que o `result` está sendo passado como parâmetro para a função `convertToNumber`.
+
+Agora vamos tratar o retorno da função `handle_file_read` que retorna o `:error`.
+```elixir
+def handle_file_read({:error, reason}), do: "Erro: reading the file: #{reason}"
+```
+Agora utilizamos a interpolação de strings para retornar um erro mais amigável para o usuário.
