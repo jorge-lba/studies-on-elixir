@@ -155,3 +155,52 @@ Se tudo estiver certo quando executarmos o comando `ProjectFizzBuzz.build("numbe
 ```
 
 ***obs:** Esse resultado se refere aos números passados no arquivo `numbers.txt`, caso você tenha adicionado números diferente o resultado deve ser outro.
+
+## Testes
+Vamos adicionar dois testes, um para verificar o retorno quando passado um arquivo valido e outro quando for passado um arquivo invalido.
+
+Vamos modificar o nosso arquivo `project_fizz_buzz.exs` adicionando o seguinte código:
+
+```elixir
+defmodule ProjectFizzBuzzTest do
+  use ExUnit.Case
+
+  describe "build/1" do
+    test "when a valid file is provided, returns the converted list" do
+      expected_response =
+        {:ok, [1, 2, :fizz, 4, :buzz, :buzz, :fizzbuzz, :buzz, :fizz, 23, 28, :fizzbuzz, :fizz]}
+
+      assert ProjectFizzBuzz.build("numbers.txt") == expected_response
+    end
+
+    test "when an invalid file is provided, returns an error" do
+      expected_response = {:error, "Erro: reading the file: enoent"}
+
+      assert ProjectFizzBuzz.build("invalid.txt") == expected_response
+    end
+  end
+end
+```
+
+O `use ExUnit.Case` carrega as funcionalidades que vamos usar para criar nossos testes.
+
+Iniciamos nosso testes informando o nome da nossa função e sea aridade no `describe`. (Esse formato é uma convenção da comunidade Elixir)
+
+Depois iniciamos nosso primeiro teste, que vai verificar se o retorno da nossa função está fazendo o esperado.
+Utilizamos a variável `expected_response` para colocar o resultado que estamo esperando.
+Para fazer o teste devemos usar o `assert` em seguida a função que queremos verificar, o operador de igualdade e a nossa variável `expected_response`.
+
+O segundo teste é semelhante o nosso primeiro, mas vamos verificar o resultado da nossa função quando recebemos um arquivo invalido como entrada da nossa função.
+
+### Executando os Testes
+Para executar os testes utilizamos o comando `mix test` no terminal, o resultado deve ser este:
+
+```elixir
+..
+
+Finished in 0.01 seconds
+2 tests, 0 failures
+```
+
+### Formatar o Código
+O Elixir tem uma função que faz a formatação do nosso código para ficar nos padrões esperados, digite o comando `mix format` e pronto seu código foi formatado.
