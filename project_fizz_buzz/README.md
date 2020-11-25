@@ -63,27 +63,95 @@ iex(2)> ProjectFizzBuzz.build("number.txt")
 :enoent
 ```
 
-### Formatando os dados
+### Resultado final
 Agora vamos formatar os dados recebidos, quando a listar retorna ela vem como string, vamos quebrar ela em uma lista e transformar no tipo `number`.
 
-Para isso vamos adicionar abaixo da função `handle_file_read` uma função para converter a lista para uma lista de números. 
+Vamos alterar a função `handle_file_read` que lê o `:ok` para a seguinte forma:
 ```elixir
-def convertToNumbers(string) do
-  string
+defp handle_file_read({:ok, result}) do
+  result = result
   |> String.split(",")
-  |> Enum.map(&String.to_integer/1)
+  |> Enum.map( &convert_and_evaluate_numbers/1 )
+
+  {:ok, result}
 end
 ```
-essa função vai quebrar a string onde houver a ","( virgula ) e depois vai fazer um map para converter o resultado para uma lista de números.
+Vamos entender o que mudou:
 
-Agora vamos passar essa função para a função `handle_file_read` que retorna o `:ok`.
-```elixir
-def handle_file_read({:ok, result}), do: result |> convertToNumbers()
-```
-Utilizando o operador pipe estamos falando que o `result` está sendo passado como parâmetro para a função `convertToNumber`.
+1.  Estamos utilizando `defp` em vez do `def`, isso garante que nossa função seja privada, assim quem for utilizar nosso modulo não terá acesso a esta função.
 
-Agora vamos tratar o retorno da função `handle_file_read` que retorna o `:error`.
+2.  Agora estamos atribuindo o resultado da nossa `pipe` na variável `result`
+3.  A Primeira função está pegando nossa string e quebrando onde tem uma virgula, isso nos retorna uma lista com todos os numero ainda como strings.
+4. A segunda função está percorrendo cada item da lista que foi passada e executando a função `convert_and_evaluate_numbers` utilizando cada um dos valores da lista, a função `Enum.map` nos retorna uma nova lista com o resultado da função passada.
+5. Por ultimo retornamos a tupla informando que a função foi executada com sucesso e o resultado `{:ok, result}`.
+
+Vamos adicionar e ver o que nossa função `convert_and_evaluate_numbers` faz.
 ```elixir
-def handle_file_read({:error, reason}), do: "Erro: reading the file: #{reason}"
+defp convert_and_evaluate_numbers(element) do
+  element
+  |> String.to_integer()
+  |> evaluate_number()
+end
 ```
-Agora utilizamos a interpolação de strings para retornar um erro mais amigável para o usuário.
+Essa função recebe um valor do tipo `string` para ser tratada.
+
+1. Adicionamos nossa variável element para executar o pipe.
+2. Vamos utilizar a função `String.to_integer` para converter o elemento em um numero.
+3. Chamamos a função `evaluate_number` para fazer a mudança do valor segundo nossas condições.
+
+Iremos adicionar agora as nossas funções `evaluate_number`.
+
+1. Essa função vai verificar se o numero passado é múltiplo de 3 e de 5, caso seja ela retorna nosso atom `:fizbuzz`, se não passara para apróxima função.
+    ```elixir
+    defp evaluate_number(number) when rem(number,3) == 0 and rem(number, 5) == 0, do: :fizzbuzz
+    ```
+2. Agora vamos verificar se o numero é apensa múltiplo de 3, caso seja retornamos `:fizz` caso contrario vamos para a próxima função.
+    ```elixir
+    defp evaluate_number(number) when rem(number,3) == 0, do: :fizz
+    ```
+3. Nessa função vamos verificar se o numero é múltiplo de 5, caso seja retornarmos `:buzz` e se não iremos para a ultima função.
+    ```elixir
+    defp evaluate_number(number) when rem(number,5) == 0, do: :buzz
+    ```
+4. Neste caso nenhuma das condições anteriores eram verdadeiras, então vamos retornar o mesmo numero que foi recebido.
+```elixir
+defp evaluate_number(number), do: number
+```
+O seu código final deve ser semelhante a este:
+
+```elixir
+defmodule ProjectFizzBuzz do
+  def build(file_name) do
+    file_name
+    |> File.read()
+    |> handle_file_read()
+  end
+  defp handle_file_read({:ok, result}) do
+    result = result
+    |> String.split(",")
+    |> Enum.map( &convert_and_evaluate_numbers/1 )
+
+    {:ok, result}
+  end
+  defp handle_file_read({:error, reason}), do: {:error, "Erro: reading the file: #{reason}"}
+
+  defp convert_and_evaluate_numbers(element) do
+    element
+    |> String.to_integer()
+    |> evaluate_number()
+  end
+
+  defp evaluate_number(number) when rem(number,3) == 0 and rem(number, 5) == 0, do: :fizzbuzz
+  defp evaluate_number(number) when rem(number,3) == 0, do: :fizz
+  defp evaluate_number(number) when rem(number,5) == 0, do: :buzz
+  defp evaluate_number(number), do: number
+end
+```
+Se tudo estiver certo quando executarmos o comando `ProjectFizzBuzz.build("numbers.txt")` no modo interativo `iex -S mix` teremos este resultado:
+```elixir
+{:ok,
+ [1, 2, :fizz, 4, :buzz, :buzz, :fizzbuzz, :buzz, :fizz, 23, 28, :fizzbuzz,
+  :fizz]}
+```
+
+***obs:** Esse resultado se refere aos números passados no arquivo `numbers.txt`, caso você tenha adicionado números diferente o resultado deve ser outro.
