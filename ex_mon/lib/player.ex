@@ -9,6 +9,7 @@ defmodule ExMon.Player do
   @enforce_keys @required_keys
 
   defstruct @required_keys
+
   @doc """
   ## Parâmetros
     Os parâmetros abaixo seram utilizados para criar o nosso player.
